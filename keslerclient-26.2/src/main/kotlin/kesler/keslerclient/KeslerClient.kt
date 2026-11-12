@@ -8,6 +8,7 @@ import kesler.keslerclient.feature.chat.CustomCommands
 import kesler.keslerclient.feature.dungeonstopwatch.DungeonStopwatch
 import kesler.keslerclient.feature.firefreeze.FireFreezeAutomation
 import kesler.keslerclient.feature.gathering.AutoGatherer
+import kesler.keslerclient.feature.gathering.AutoFishing
 import kesler.keslerclient.feature.holdrightclick.HoldRightClick
 import kesler.keslerclient.feature.keybindings.AlternateKeyBindings
 import kesler.keslerclient.feature.secrets.SecretClicker
@@ -25,6 +26,7 @@ class KeslerClient : ClientModInitializer {
 		FireFreezeAutomation.init()
 		SecretClicker.init()
 		AutoGatherer.init()
+		AutoFishing.init()
 		HoldRightClick.init()
 		AutoClicker.init()
 		AnvilBookMerger.init()

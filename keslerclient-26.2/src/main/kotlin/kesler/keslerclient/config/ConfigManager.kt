@@ -54,6 +54,7 @@ class Config {
     // Gathering helpers
     @JvmField var lushllilacBushAutoHarvestEnabled: Boolean = false
     @JvmField var seaLumieAutoHarvestEnabled: Boolean = false
+    @JvmField var autoFishingEnabled: Boolean = false
 
     // Auto clicker
     @JvmField var autoClickerEnabled: Boolean = false

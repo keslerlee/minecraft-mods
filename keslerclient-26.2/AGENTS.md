@@ -27,7 +27,7 @@ src/main/java/kesler/keslerclient/mixin/   all mixins (must be Java), registered
 
 ## Adding a feature
 1. Add its fields (with defaults) to `Config` in `ConfigManager.kt`
-2. Create `feature/<name>/` with the logic and a `<Name>Section : ConfigSection` (one tab in the config screen)
+2. Create `feature/<name>/` with the logic and add its settings to the appropriate `ConfigSection` tab. Related automation features share the Automation tab.
 3. Add the section to `Categories.all`
 4. Call the feature's `init()` from `KeslerClient.onInitializeClient()`
 5. Any mixin goes in the Java mixin package and in `keslerclient.mixins.json`
@@ -37,10 +37,11 @@ src/main/java/kesler/keslerclient/mixin/   all mixins (must be Java), registered
 - **Chat** (`feature/chat`): optional custom chat height while the chat screen is open, extended history, right-click-to-copy, and merging of immediately consecutive identical messages with a repeat count. Extended history raises Minecraft's displayed-line and raw-message caps from 100 to 10,000 when enabled; the toggles are off by default.
 - **Controls** (`feature/keybindings`): optional always-sprint behavior plus configurable extra keyboard bindings for attack, use, movement, jump, sneak, and sprint that share the corresponding vanilla action.
 - **Custom command bindings** (`feature/chat`): the Commands config tab provides separate alias and target fields; matching aliases are replaced with the target command, with any typed arguments appended.
-- **Secret clicker** (`feature/secrets`): Hypixel Skyblock dungeons. Detects a dungeon by "Dungeon: Catacombs" in the tab list (checked each second for 30s after joining a world), then right-clicks the looked-at lever, chest, or player head whose UUID matches the saved wither or redstone UUID. Clicked block positions are kept in a `HashSet<Long>` and cleared on every world join. UUIDs are set only via commands: `/kesler secrets setwither` and `/kesler secrets setredstone` while looking at the head.
-- **Auto gatherer** (`feature/gathering`): separate off-by-default toggles right-click flowering azalea blocks (claimable Lushllilac Bushes) and mine Sea Lumies (sea pickles with 3 or more pickles) while targeted. Retry cooldowns are five ticks; pickle swings repeat every six ticks.
+- **Dungeons tab** also contains the **Secret clicker** (`feature/secrets`), for Hypixel SkyBlock dungeons. It detects a dungeon by "Dungeon: Catacombs" in the tab list (checked each second for 30s after joining a world), then right-clicks the looked-at lever, chest, or player head whose UUID matches the saved wither or redstone UUID. Clicked block positions are kept in a `HashSet<Long>` and cleared on every world join. UUIDs are set only via commands: `/kesler secrets setwither` and `/kesler secrets setredstone` while looking at the head.
+- **Auto gathering and fishing** (`feature/gathering`): separate off-by-default toggles right-click flowering azalea blocks (claimable Lushllilac Bushes), mine Sea Lumies (sea pickles with 3 or more pickles) while targeted, and reel when Hypixel updates the invisible `!!!` armor stand inside four blocks of the owned bobber, matching Skyblocker's bite-title cue. Recast after six ticks. Gathering retry cooldowns are five ticks; pickle swings repeat every six ticks.
+- **Auto clicker** (`feature/autoclicker`): configured at the top of the Automation tab; while attack is held, bumps `KeyMapping.clickCount` via mixin accessor at a random CPS in [avg - spread, avg + spread], re-rolled every click. Also zeroes `Minecraft.missTime` each tick while active.
 - **Dungeon stopwatch** (`feature/dungeonstopwatch`): off by default; position- and scale-configurable stopwatch shows elapsed time to hundredths, starts on a recognized floor-boss opening line during a Catacombs run (rather than generic `[BOSS]` messages that may occur in the Blood Room), and clears on leaving the run or disconnecting.
-- **Fire Freeze automation** (`feature/firefreeze`): optional F3/M3 helper selects one nearest Professor stand on the preceding phase dialogue, steers toward that fixed stand, jumps on horizontal collision while grounded, and uses a hotbar staff on the follow-up line only while within one block of a stand.
+- **Fire Freeze automation** (`feature/firefreeze`): optional F3/M3 helper switches to a hotbar Fire Freeze Staff if needed and uses it on the Professor's "Even if you took my barrier down, I can still fight." line; it does not move the player.
 - **Auto clicker** (`feature/autoclicker`): while attack is held, bumps `KeyMapping.clickCount` via mixin accessor at a random CPS in [avg - spread, avg + spread], re-rolled every click. Also zeroes `Minecraft.missTime` each tick while active.
 - **Scrollable tooltips** (`feature/tooltip`): optional toggle. Long item tooltips can be scrolled with the mouse wheel inside a full-height panel; scrolling clamps at the first and last rows.
 - **Visuals** (`feature/visuals`): optional fullbright (lightmap gamma factor 1,000), hide dying living entities immediately, a container debug overlay with slot indices and tooltip lore-line indices, smaller first-person held items, slower local attack swing animation, hide explosions, instant sneak camera height, opaque pale-blue tint for invisible living entities, blindness fog removal, lowered first-person fire overlay, and damage camera shake removal.
@@ -64,6 +65,7 @@ src/main/java/kesler/keslerclient/mixin/   all mixins (must be Java), registered
 - Reduced fire overlay: implemented with an off-by-default Visuals toggle; needs in-game confirmation
 - Damage camera shake removal: implemented with an off-by-default Visuals toggle; needs in-game confirmation
 - Auto gatherer: implemented; needs in-game confirmation
+- Auto fishing: implemented; bite detection and reel/recast timing need in-game confirmation
 - Dungeon stopwatch: implemented; event detection and timing need in-game confirmation
 - Fire Freeze automation: implemented in its own feature package; event detection, movement, item identification, and activation need in-game confirmation
 

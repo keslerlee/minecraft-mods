@@ -15,6 +15,12 @@ object DungeonStopwatchSection : ConfigSection {
         val defaults = Config()
 
         category.addEntry(
+            entries.startBooleanToggle(Component.literal("Secret Clicker"), cfg.secretClickerEnabled)
+                .setDefaultValue(defaults.secretClickerEnabled)
+                .setSaveConsumer { cfg.secretClickerEnabled = it }
+                .build()
+        )
+        category.addEntry(
             entries.startBooleanToggle(Component.literal("Dungeon Boss Stopwatch"), cfg.dungeonStopwatchEnabled)
                 .setDefaultValue(defaults.dungeonStopwatchEnabled)
                 .setSaveConsumer { cfg.dungeonStopwatchEnabled = it }
@@ -39,7 +45,7 @@ object DungeonStopwatchSection : ConfigSection {
                 .build()
         )
         category.addEntry(
-            entries.startBooleanToggle(Component.literal("Auto Walk and Use Fire Freeze (F3/M3)"), cfg.fireFreezeCueEnabled)
+            entries.startBooleanToggle(Component.literal("Auto Use Fire Freeze Staff (F3/M3)"), cfg.fireFreezeCueEnabled)
                 .setDefaultValue(defaults.fireFreezeCueEnabled)
                 .setSaveConsumer { cfg.fireFreezeCueEnabled = it }
                 .build()

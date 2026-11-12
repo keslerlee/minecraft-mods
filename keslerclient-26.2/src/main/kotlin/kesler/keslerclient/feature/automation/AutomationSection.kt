@@ -1,4 +1,4 @@
-package kesler.keslerclient.feature.autoclicker
+package kesler.keslerclient.feature.automation
 
 import kesler.keslerclient.config.Config
 import kesler.keslerclient.config.ConfigManager
@@ -7,15 +7,15 @@ import me.shedaniel.clothconfig2.api.ConfigCategory
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder
 import net.minecraft.network.chat.Component
 
-object AutoClickerSection : ConfigSection {
-    override val title = "Auto Clicker"
+object AutomationSection : ConfigSection {
+    override val title = "Automation"
 
     override fun build(category: ConfigCategory, entries: ConfigEntryBuilder) {
         val cfg = ConfigManager.get()
         val defaults = Config()
 
         category.addEntry(
-            entries.startBooleanToggle(Component.literal("Auto Clicker"), cfg.autoClickerEnabled)
+            entries.startBooleanToggle(Component.literal("Enable Auto Clicker"), cfg.autoClickerEnabled)
                 .setDefaultValue(defaults.autoClickerEnabled)
                 .setSaveConsumer { cfg.autoClickerEnabled = it }
                 .build()
@@ -30,6 +30,24 @@ object AutoClickerSection : ConfigSection {
             entries.startIntSlider(Component.literal("CPS Spread"), cfg.autoClickerSpread, 0, 10)
                 .setDefaultValue(defaults.autoClickerSpread)
                 .setSaveConsumer { cfg.autoClickerSpread = it }
+                .build()
+        )
+        category.addEntry(
+            entries.startBooleanToggle(Component.literal("Auto Harvest Lushllilac Bushes"), cfg.lushllilacBushAutoHarvestEnabled)
+                .setDefaultValue(defaults.lushllilacBushAutoHarvestEnabled)
+                .setSaveConsumer { cfg.lushllilacBushAutoHarvestEnabled = it }
+                .build()
+        )
+        category.addEntry(
+            entries.startBooleanToggle(Component.literal("Auto Harvest Sea Lumies (3+)"), cfg.seaLumieAutoHarvestEnabled)
+                .setDefaultValue(defaults.seaLumieAutoHarvestEnabled)
+                .setSaveConsumer { cfg.seaLumieAutoHarvestEnabled = it }
+                .build()
+        )
+        category.addEntry(
+            entries.startBooleanToggle(Component.literal("Auto Fishing"), cfg.autoFishingEnabled)
+                .setDefaultValue(defaults.autoFishingEnabled)
+                .setSaveConsumer { cfg.autoFishingEnabled = it }
                 .build()
         )
     }
