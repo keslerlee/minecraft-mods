@@ -1,0 +1,26 @@
+{
+	"schemaVersion": 1,
+	"id": "keslerclient",
+	"version": "${version}",
+	"name": "KeslerClient",
+	"description": "All-in-one client mod.",
+	"authors": ["Kesler"],
+	"license": "All-Rights-Reserved",
+	"environment": "client",
+	"entrypoints": {
+		"client": ["kesler.keslerclient.KeslerClient"],
+		"modmenu": ["kesler.keslerclient.KeslerModMenu"]
+	},
+	"mixins": ["keslerclient.mixins.json"],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*",
+		"cloth-config": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

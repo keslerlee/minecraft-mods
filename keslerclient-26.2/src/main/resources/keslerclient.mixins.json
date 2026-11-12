@@ -1,0 +1,7 @@
+{
+	"required": true,
+	"package": "kesler.keslerclient.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"client": ["ChatComponentMixin", "ChatComponentAccessor", "ChatScreenCopyMixin", "KeyMappingAccessor", "KeyMappingMapAccessor", "KeyMappingHoldMixin", "AlwaysSprintMixin", "SlowAttackAnimationMixin", "HideMobDeathAnimationMixin", "ContainerDebugOverlayMixin", "MinecraftAccessor", "TooltipScrollMixin", "MouseHandlerMixin", "ClientTextTooltipAccessor", "ScreenTooltipIdentityMixin", "InstantSneakCameraMixin", "ShowInvisibleEntitiesMixin", "DisableBlindnessFogMixin", "FullbrightMixin", "SmallerHeldItemsMixin", "ExplosionParticleMixin", "FireOverlayMixin", "DisableDamageCameraShakeMixin", "HoldRightClickScreenMixin"],
+	"injectors": { "defaultRequire": 1 }
+}
