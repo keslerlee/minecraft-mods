@@ -31,7 +31,7 @@ src/main/java/kesler/keslerclient/mixin/   all mixins (must be Java), registered
 3. Add the section to `Categories.all`
 4. Call the feature's `init()` from `KeslerClient.onInitializeClient()`
 5. Any mixin goes in the Java mixin package and in `keslerclient.mixins.json`
-6. Update this file (Layout, Features, Status)
+6. Update this file (Layout, Features, Status) and `README.md` so the public feature list stays current.
 
 ## Features
 - **Chat** (`feature/chat`): optional custom chat height while the chat screen is open, extended history, right-click-to-copy, and merging of immediately consecutive identical messages with a repeat count. Extended history raises Minecraft's displayed-line and raw-message caps from 100 to 10,000 when enabled; the toggles are off by default.
